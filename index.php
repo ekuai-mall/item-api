@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Auth System
+ * Item-API
  *
  * 一个php商品插件（类）
  * @author kuai
