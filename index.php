@@ -6,7 +6,7 @@
  * 一个php商品插件（类）
  * @author kuai
  * @copyright ekuai 2020
- * @version 1.0
+ * @version 1.1
  */
 class Item {
 	const ERR_DB = 'database error';
@@ -42,7 +42,7 @@ class Item {
 	}
 	
 	public function searchItem($key) {
-		$ret = $this->query('SELECT * FROM `ekm_item_main` WHERE `name` LIKE ? LIMIT 50', array('%' . $key, '%'));
+		$ret = $this->query('SELECT * FROM `ekm_item_main` WHERE `name` LIKE ? LIMIT 50', array('%' . $key . '%'));
 		return $this->ret('0', $ret);
 	}
 	
@@ -54,13 +54,8 @@ class Item {
 			$retChildren = $this->query('SELECT * FROM `ekm_item_info` WHERE `sort` = ?', array($id));
 			$ret = $ret[0];
 			$ret['child'] = $retChildren;
+			$ret = $this->ret(0, $ret);
 		}
-		return $this->ret(0, $ret);
+		return $ret;
 	}
-	
-	public function buy() {
-
-	}
-	
-	
 }
